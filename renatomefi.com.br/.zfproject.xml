@@ -57,6 +57,10 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="logout"/>
         </controllerFile>
+        <controllerFile controllerName="Search">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="bluid"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
@@ -172,6 +176,12 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="noauth"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Search">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Search">
+            <viewScriptFile forActionName="bluid"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -211,6 +221,7 @@
           <testApplicationControllerFile filesystemName="MenuControllerTest.php"/>
           <testApplicationControllerFile filesystemName="MenuitemControllerTest.php"/>
           <testApplicationControllerFile filesystemName="UserControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="SearchControllerTest.php"/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
