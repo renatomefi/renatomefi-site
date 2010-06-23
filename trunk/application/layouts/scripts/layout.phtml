@@ -20,9 +20,10 @@ $this->layout()->searchForm = $searchForm;
         $this->loadSkin($this->skin);
         echo $this->headLink();
         
-        $this->headScript()->appendFile('util/js/jqt.1.2.1.min.js');
-        $this->headScript()->appendFile('util/js/flowplayer-3.2.0.min.js');
-        //echo $this->headScript();
+        $this->headScript()->appendFile($this->baseUrl() . '/util/js/jqt.1.2.1.min.js');
+        $this->headScript()->appendFile($this->baseUrl() . '/util/js/flowplayer-3.2.0.min.js');
+        $this->headScript()->appendFile($this->baseUrl() . '/util/js/main_functions.js');
+        echo $this->headScript();
         ?>
         
     </head>
@@ -47,7 +48,7 @@ $this->layout()->searchForm = $searchForm;
                         <div id="login">
                             <?=$this->layout()->userForm?>
                         </div>
-                        <div class="right"></div> 
+                        <div class="right" onClick="javascript:containerLogin();"></div> 
                     </div>  
                 </div>
                 <div id="center">
