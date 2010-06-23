@@ -5,6 +5,9 @@ echo $this->doctype();
 $this->layout()->nav = $this->action('render','menu',null,array('menu'=>$this->mainMenuId));
 $this->layout()->adminMenu = $this->action('render','menu',null,array('menu'=>$this->adminMenuId));
 $this->layout()->userForm = $this->action('index','user');
+$searchForm = new Form_SearchForm();
+$searchForm->setAction('/search');
+$this->layout()->searchForm = $searchForm;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head>
@@ -35,12 +38,14 @@ $this->layout()->userForm = $this->action('index','user');
                     </div>
                     <div class="content">
                         <div class="left"></div>
-                        <div class="middle">
+                        <div class="menu" id="main">
                             <?=$this->layout()->nav?>
+                        </div>
+                        <div class="menu" id="admin">
                             <?=$this->layout()->adminMenu?>
-                            <div id="login">
+                        </div>
+                        <div id="login">
                             <?=$this->layout()->userForm?>
-                            </div>
                         </div>
                         <div class="right"></div> 
                     </div>  
@@ -53,8 +58,13 @@ $this->layout()->userForm = $this->action('index','user');
                                 <div id="info" style="width: 640px; text-align: justify;">
                                 <?=$this->layout()->content?>
                                 </div>
+                                
 
+                                
                             </div>
+                        <div id="search">
+                            <?=$this->layout()->searchForm?>
+                        </div>
                         <div class="right"></div> 
                     </div>  
                 </div>
