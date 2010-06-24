@@ -33,7 +33,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         
         // cms users can also work with content
         $acl->allow('user', 'page', array('list', 'create', 'edit', 'delete'));
-        $acl->allow('guest', 'user', array('logout'));
+        $acl->allow('user', 'user', array('logout'));
         
         // administrators can do anything
         $acl->allow('administrator', null);
