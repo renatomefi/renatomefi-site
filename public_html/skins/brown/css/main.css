@@ -27,6 +27,14 @@
         float: left; 
     }
     
+    div#account_button {
+        width: 28px;
+    	height: 25px;
+    	margin: 12px 0 0 6px;
+    	background: url("../images/main_container/account_icon.png") no-repeat;
+    	cursor: pointer;	
+    }
+    
     /* Login */
     div#login {
     	margin-top: 3px;

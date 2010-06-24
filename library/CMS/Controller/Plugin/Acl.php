@@ -20,6 +20,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->add(new Zend_Acl_Resource('user'));
         $acl->add(new Zend_Acl_Resource('search'));
         $acl->add(new Zend_Acl_Resource('feed'));
+        $acl->add(new Zend_Acl_Resource('bug'));
         
         // set up the access rules
         $acl->allow(null, array('index', 'error'));
@@ -30,6 +31,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->allow('guest', 'user', array('login'));
         $acl->allow('guest', 'search', array('index', 'search'));
         $acl->allow('guest', 'feed');
+        $acl->allow('guest', 'bug', array('submit', 'list'));
         
         // cms users can also work with content
         $acl->allow('user', 'page', array('list', 'create', 'edit', 'delete'));
