@@ -16,8 +16,10 @@ class FeedController extends Zend_Controller_Action
     public function rssAction()
     {
         $feedArray = array();
-        $feedArray['title'] = 'Recent Pages';
+        $feedArray['title'] = 'Renatomefi.com.br';
         $feedArray['link'] = $this->view->baseUrl();
+        $feedArray['description'] = 'Últimas notícias';
+        $feedArray['lastBuildDate'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
         $feedArray['published'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
         $feedArray['charset'] = 'UTF8';
         
