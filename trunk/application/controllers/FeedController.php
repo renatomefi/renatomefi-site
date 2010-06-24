@@ -17,7 +17,7 @@ class FeedController extends Zend_Controller_Action
     {
         $feedArray = array();
         $feedArray['title'] = 'Renatomefi.com.br';
-        $feedArray['link'] = $this->view->baseUrl();
+        $feedArray['link'] = 'http://www.renatomefi.com.br/';
         $feedArray['description'] = 'Últimas notícias';
         $feedArray['lastBuildDate'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
         $feedArray['published'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
@@ -31,7 +31,7 @@ class FeedController extends Zend_Controller_Action
         		$entry = array();
         		$entry['guid'] = $page->id;
         		$entry['title'] = $page->headline;
-        		$entry['link'] = $this->view->baseUrl() . '/page/open/title/' . $page->name;
+        		$entry['link'] = $feedArray['link'] . 'page/open/title/' . $page->name;
         		$entry['description'] = $page->description;
         		$entry['content'] = $page->content;
         		

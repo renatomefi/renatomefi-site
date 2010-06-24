@@ -45,7 +45,7 @@ function animateLoginAction(action)
 function animateLoginOpen(loginObj,widthObj)
 {
 	loginObj.css('width','0');
-	loginObj.animate({width:widthObj}, 2000, function() {
+	loginObj.animate({width:widthObj}, 1500, function() {
 		loginObj.css('display','block');
 		inActionAnimateLogin = false;
 	  });
@@ -53,7 +53,7 @@ function animateLoginOpen(loginObj,widthObj)
 
 function animateLoginClose(loginObj)
 {
-	loginObj.animate({width:0}, 2000, function() {
+	loginObj.animate({width:0}, 1500, function() {
 		loginObj.css('display','none');
 		inActionAnimateLogin = false;
 	  });
