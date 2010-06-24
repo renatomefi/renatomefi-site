@@ -1,0 +1,16 @@
+<h2>Usuários</h2>
+<? if ($this->users != null) : ?>
+<table class="spreadsheet" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>Ações</th>
+        <th>Sobrenome</th>
+        <th>Nome</th>
+        <th>Usuário</th>
+        <th>Tipo</th>
+    </tr>
+    <?=$this->partialLoop('partials/_user-row.phtml',$this->users)?>
+</table>
+<? else : ?>
+<p>Nenhum usuário</p>
+<? endif; ?>
+<p><a href="/user/create">Criar novo usuário</a></p>
