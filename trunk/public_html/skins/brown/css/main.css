@@ -30,13 +30,14 @@
     /* Login */
     div#login {
     	margin-top: 3px;
-    	display: inline;
+    	display: none;
         float: right;   
     	font-size: 12px;
     	background-color: #796646;
     	color: #FFF;
     	height: 103px;
     	overflow: hidden;
+    	white-space: nowrap;
     }
     
     div#search {
