@@ -1,7 +1,0 @@
-<h2>Minha Conta</h2>
-<? if ($this->identity == null) : ?>
-<p>Para fazer login clique <a href="/user/login">aqui</a></p>
-<? else : ?>
-<p>Bem vindo <?=$this->identity->first_name?></p>
-<p>Para sair clique <a href="/user/logout">aqui</a></p>
-<? endif; ?>
