@@ -30,7 +30,7 @@
     div#account_button {
         width: 28px;
     	height: 25px;
-    	margin: 12px 0 0 6px;
+    	margin: 12px 0 0 9px;
     	background: url("../images/main_container/account_icon.png") no-repeat;
     	cursor: pointer;	
     }
@@ -62,8 +62,12 @@
     }
     
     ul.navigation li {
-    	list-style: square;
+    	list-style: circle inside;
         color: #796646;
+    	float: left;
+    	margin-left: 22px;
+    	padding-bottom: 3px;
+    	border-bottom: 2px groove #aaa;
     }
     
     #controllers_container {
