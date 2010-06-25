@@ -28,10 +28,10 @@
     }
     
     div#account_button {
-        width: 28px;
-    	height: 25px;
-    	margin: 12px 0 0 9px;
-    	background: url("../images/main_container/account_icon.png") no-repeat;
+        width: 32px;
+    	height: 32px;
+    	margin: 12px 0 0 7px;
+    	background: url("../images/main_container/user_icon.png") no-repeat;
     	cursor: pointer;	
     }
 

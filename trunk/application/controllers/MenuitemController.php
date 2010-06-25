@@ -68,8 +68,8 @@ class MenuitemController extends Zend_Controller_Action
 	    $mdlMenu = new Model_Menu();
 	    $this->view->menu = $mdlMenu->find($currentMenuitem->menu_id)->current();
 	    // create and populate the form instance
-	    $frmMenuitem = new Form_Menuitem();
-	    $frmMenuitem->setAction('/Menuitem/update');
+	    $frmMenuitem = new Form_MenuitemForm();
+	    $frmMenuitem->setAction('/menuitem/update');
 	    // process the postback
 	    if ($this->_request->isPost()) {
 	        if ($frmMenuitem->isValid($_POST)) {
