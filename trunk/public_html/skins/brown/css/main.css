@@ -34,7 +34,32 @@
     	background: url("../images/main_container/account_icon.png") no-repeat;
     	cursor: pointer;	
     }
+
+    /* Pesquisar */
+    div#search dt {
+        padding: 0;  
+    }
     
+    div#search dl {
+        margin: 0;	
+    }
+    
+    div#search dd {
+        margin: 0;
+    	padding: 0;
+    	float: left;
+    	display: inline;	
+    }
+    
+    div#search dd input[type="text"] {
+       border: 1px solid #D3CAAA;	
+    }
+    
+    div#search input#search {
+        display: inline;
+    	float: right;	
+    }
+
     /* Login */
     div#login {
     	margin-top: 3px;
@@ -53,6 +78,11 @@
         float: left;   
         font-size: 12px;
     }    
+    
+    ul.navigation {
+        padding: 0;
+    	margin: 0;	
+    }
 
     ul.navigation li a {
     	text-decoration: none;
@@ -65,9 +95,9 @@
     	list-style: circle inside;
         color: #796646;
     	float: left;
-    	margin-left: 22px;
+    	margin-left: 18px;
     	padding-bottom: 3px;
-    	border-bottom: 2px groove #aaa;
+    	border-bottom: 1px dotted #c5c5c5;
     }
     
     #controllers_container {
