@@ -13,7 +13,23 @@ class CMS_Api
 	
 	public function search ($apiKey,$keywords)
 	{
+	   if (!$this->_validateKey($apiKey)) {
+	       return array('error' => 'invalid api key', 'status' => false );	
+	   }
 	   
+	   $query = Zend_Search_Lucene_Search_QueryParser::parse($keywords);
+	   $index = Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes');
+	   $hits = $index->find($query);
+	   
+	   if (is_array($hits) && count($hits) > 0) {
+	       $response['hits'] = count($hits);
+	       foreach ($hits as $page) {
+	           $pageObj = new CMS_Content_Item_Page($page->page_id);
+	           $response['results']['page_' . $page->page_id] = $pageObj->toArray();
+	       }
+	   } else {
+	       $response['hits'] = 0;
+	   }
 	}
 }
 ?>
