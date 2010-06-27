@@ -48,5 +48,23 @@ class CMS_Api
 		
 		return $itemPage->toArray();
 	}
+	
+	public function updatePage ($apiKey,$id,$name,$headline,$description,$content)
+	{
+	    if (!$this->_validateKey($apiKey)) {
+            return array('error' => 'invalid api key', 'status' => false );
+	    }
+	    
+	    $itemPage = new CMS_Content_Item_Page();
+	    
+	    $itemPage->name = $name;
+        $itemPage->headline = $headline;
+        $itemPage->description = $description;
+        $itemPage->content = $content;
+        
+        $itemPage->save();
+        
+        return $itemPage->toArray();
+	}
 }
 ?>
