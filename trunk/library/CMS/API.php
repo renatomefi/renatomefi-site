@@ -14,7 +14,7 @@ class CMS_Api
 	public function search ($apiKey,$keywords)
 	{
 	   if (!$this->_validateKey($apiKey)) {
-	       return array('error' => 'invalid api key', 'status' => false );	
+	       return array('error' => 'invalid API key', 'status' => false );	
 	   }
 	   
 	   $query = Zend_Search_Lucene_Search_QueryParser::parse($keywords);
@@ -35,7 +35,7 @@ class CMS_Api
 	public function createPage ($apiKey,$name,$headline,$description,$content)
 	{
 		if (!$this->_validateKey($apiKey)) {
-			return array('error' => 'invalid api key', 'status' => false );
+			return array('error' => 'invalid API key', 'status' => false );
 		}
 		
 		$itemPage = new CMS_Content_Item_Page();
@@ -52,7 +52,7 @@ class CMS_Api
 	public function updatePage ($apiKey,$id,$name,$headline,$description,$content)
 	{
 	    if (!$this->_validateKey($apiKey)) {
-            return array('error' => 'invalid api key', 'status' => false );
+            return array('error' => 'invalid API key', 'status' => false );
 	    }
 	    
 	    $itemPage = new CMS_Content_Item_Page();
@@ -70,7 +70,7 @@ class CMS_Api
 	public function deletePage ($apiKey,$id) 
 	{
 	    if (!$this->_validateKey($apiKey)) {
-            return array('error' => 'invalid api key', 'status' => false );
+            return array('error' => 'invalid API key', 'status' => false );
         }
         
         $itemPage = new CMS_Content_Item_Page($id);
