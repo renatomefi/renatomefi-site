@@ -66,5 +66,20 @@ class CMS_Api
         
         return $itemPage->toArray();
 	}
+	
+	public function deletePage ($apiKey,$id) 
+	{
+	    if (!$this->_validateKey($apiKey)) {
+            return array('error' => 'invalid api key', 'status' => false );
+        }
+        
+        $itemPage = new CMS_Content_Item_Page($id);
+        if ($itemPage) {
+        	$itemPage->delete();
+        	return true;
+        } else {
+        	return false;
+        }
+	}
 }
 ?>
