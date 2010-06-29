@@ -1,5 +1,5 @@
 <?php
-class Contact_Forms_Contact extends Zend_Form
+class Contact_Form_Contact extends Zend_Form
 {
 	public function init()
 	{
@@ -29,6 +29,16 @@ class Contact_Forms_Contact extends Zend_Form
 		$message->setAttrib('cols',50);
 		$message->setAttrib('rows',12);
 		$this->addElement($message);
+		
+		$recaptchaPrivateKey = '6Le6LLsSAAAAANDY3DXIEiCQmoE1czWXQx-EiWsU';
+		$recaptchaPublicKey = '6Le6LLsSAAAAAEyvrwfjCbRHpp9sb57FbrOIrWwX';
+		$recaptcha = new Zend_Service_ReCaptcha($recaptchaPublicKey,$recaptchaPrivateKey);
+		$captcha = new Zend_Form_Element_Captcha('captcha',
+		  array('captcha' => 'ReCaptcha',
+		        'captchaOptions' => array('captcha' => 'ReCaptcha',
+		                                  'service' => $recaptcha)));
+		  
+		$this->addElement($captcha);
 		
 		$submit = $this->addElement('submit','submit',array('label' => 'Enviar Mensagem'));
 	}
