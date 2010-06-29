@@ -40,8 +40,15 @@ class Contact_IndexController extends Zend_Controller_Action
 			$mail->setSubject($subject);
 			$mail->setFrom($email,$sender);
 			$mail->addTo('contato@renatomefi.com.br','WebMaster');
-			$mail->setBodyHtml($htmlMessage);
-			$mail->setBodyText($message);
+			$fileControl = $frmContact->getElement('attachment');
+			if ($fileControl->isUploaded()) {
+				$attachmentName = $fileControl->getFileName();
+				$fileStream = file_get_contents($attachmentName);
+				$attachment = $mail->createAttachment($fileStream);
+				$attachment->filename = basename($attachmentName);
+			}
+			$mail->setBodyHtml(utf8_decode($htmlMessage));
+			$mail->setBodyText(utf8_decode($message));
 			
 			$mailTransport = new Zend_Mail_Transport_Smtp($this->_strSmtp,$this->_aMailConfig);
 			
