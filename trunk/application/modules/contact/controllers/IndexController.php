@@ -19,13 +19,21 @@ class Contact_IndexController extends Zend_Controller_Action
 			);
 			
 			$mail = new Zend_Mail();
+			$config = array('auth' => 'login',
+			                'username' => 'teste@renatomefi.com.br',
+			                'password' => 'B56533',
+			                'ssl' => 'tls',
+			                'port' => '587');
+			
+			$transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com',$config);
+			
 			$mail->setSubject($subject);
 			$mail->setFrom($email,$sender);
 			$mail->addTo('contato@renatomefi.com.br','WebMaster');
 			$mail->setBodyHtml($htmlMessage);
 			$mail->setBodyText($message);
 			
-			$result = $mail->send();
+			$result = $mail->send($transport);
 			$this->view->messageProcessed = true;
 			if ($result) {
 				$this->view->sendError = false;

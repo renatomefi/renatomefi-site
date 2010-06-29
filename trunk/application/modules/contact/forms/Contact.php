@@ -13,7 +13,7 @@ class Contact_Form_Contact extends Zend_Form
 		$email->setLabel('E-mail: ');
 		$email->setRequired(true);
 		$email->setAttrib('size',40);
-		$email->addValidator('EmailAdress');
+		//$email->addValidator('EmailAdress');
 		$email->addErrorMessage('E-mail inválido!');
 		$this->addElement($email);
 		
