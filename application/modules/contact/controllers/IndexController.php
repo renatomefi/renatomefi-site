@@ -1,6 +1,24 @@
 <?php
 class Contact_IndexController extends Zend_Controller_Action
 {
+	
+	private $_aMailConfig;
+    private $_strSmtp;
+    
+	public function preDispatch()
+	{
+	    $bootstrap = $this->getInvokeArg('bootstrap');
+	    $aConfig = $bootstrap->getOptions();
+	    $this->_aMailConfig = array(
+	     'auth' => 'login'
+	    ,'username' => $aConfig['email']['username']
+	    ,'password' => $aConfig['email']['password']
+	    ,'ssl' => $aConfig['email']['ssl']
+	    ,'port' => $aConfig['email']['port']);
+	    $this->_strSmtp = $aConfig['email']['server'];
+	    parent::preDispatch();
+	}
+
 	public function indexAction()
 	{
         // Solução Provisória com Include
@@ -19,22 +37,18 @@ class Contact_IndexController extends Zend_Controller_Action
 			);
 			
 			$mail = new Zend_Mail();
-			$config = array('auth' => 'login',
-			                'username' => 'teste@renatomefi.com.br',
-			                'password' => 'B56533',
-			                'ssl' => 'tls',
-			                'port' => '587');
-			
-			$transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com',$config);
-			
 			$mail->setSubject($subject);
 			$mail->setFrom($email,$sender);
 			$mail->addTo('contato@renatomefi.com.br','WebMaster');
 			$mail->setBodyHtml($htmlMessage);
 			$mail->setBodyText($message);
 			
-			$result = $mail->send($transport);
+			$mailTransport = new Zend_Mail_Transport_Smtp($this->_strSmtp,$this->_aMailConfig);
+			
+			$result = $mail->send($mailTransport);
+			
 			$this->view->messageProcessed = true;
+			
 			if ($result) {
 				$this->view->sendError = false;
 			} else {
