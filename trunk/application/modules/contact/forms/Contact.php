@@ -23,13 +23,20 @@ class Contact_Form_Contact extends Zend_Form
 		$subject->setAttrib('size',60);
 		$this->addElement($subject);
 		
+		$attachment = $this->createElement('file','attachment');
+        $attachment->setLabel('Envie um arquivo:');
+        $attachment->setDestination(APPLICATION_PATH . '/../public_html/uploads');
+        $attachment->addValidator('Count',false,1);
+        $attachment->addValidator('Size',false,3078000);
+        $this->addElement($attachment);
+        
 		$message = $this->createElement('textarea','message');
 		$message->setLabel('Message: ');
 		$message->setRequired(true);
 		$message->setAttrib('cols',50);
 		$message->setAttrib('rows',12);
 		$this->addElement($message);
-		
+
 		$recaptchaPrivateKey = '6Le6LLsSAAAAANDY3DXIEiCQmoE1czWXQx-EiWsU';
 		$recaptchaPublicKey = '6Le6LLsSAAAAAEyvrwfjCbRHpp9sb57FbrOIrWwX';
 		$recaptcha = new Zend_Service_ReCaptcha($recaptchaPublicKey,$recaptchaPrivateKey);
@@ -39,6 +46,8 @@ class Contact_Form_Contact extends Zend_Form
 		                                  'service' => $recaptcha)));
 		  
 		$this->addElement($captcha);
+		
+		$this->setAttrib('enctype','multipart/form-data');
 		
 		$submit = $this->addElement('submit','submit',array('label' => 'Enviar Mensagem'));
 	}
