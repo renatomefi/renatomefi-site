@@ -68,6 +68,9 @@
         <controllerFile controllerName="DBProfiler">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Profiler">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
@@ -212,6 +215,9 @@
           <viewControllerScriptsDirectory forControllerName="DBProfiler">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Profiler">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -254,6 +260,7 @@
           <testApplicationControllerFile filesystemName="SearchControllerTest.php"/>
           <testApplicationControllerFile filesystemName="FeedControllerTest.php"/>
           <testApplicationControllerFile filesystemName="DBProfilerControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ProfilerControllerTest.php"/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>

@@ -5,6 +5,7 @@ echo $this->doctype();
 $this->layout()->nav = $this->action('render','menu',null,array('menu'=>$this->mainMenuId));
 $this->layout()->adminMenu = $this->action('render','menu',null,array('menu'=>$this->adminMenuId));
 $this->layout()->userForm = $this->action('index','user');
+$this->layout()->dbProfiler = $this->action('index','profiler');
 $searchForm = new Form_SearchForm();
 $searchForm->setAction('/search');
 $this->layout()->searchForm = $searchForm;
@@ -90,8 +91,5 @@ $this->layout()->searchForm = $searchForm;
             </div>
         </div>
     </body>
-	<?php
-    $this->addScriptPath(APPLICATION_PATH . '/views/scripts');
-    echo $this->render('util/profiler.phtml');
-	?>
+	<?=$this->layout()->dbProfiler?>
 </html>
