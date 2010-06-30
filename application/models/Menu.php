@@ -25,6 +25,9 @@ class Model_Menu extends Zend_Db_Table_Abstract
     {
         $currentMenu = $this->find($id)->current();
         if ($currentMenu) {
+        	$cache = Zend_Registry::get('cache');
+        	$id = 'menu_' . $id;
+        	$cache->remove($id);
             $currentMenu->name = $name;
             return $currentMenu->save();
         } else {

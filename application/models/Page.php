@@ -24,15 +24,12 @@ class Model_Page extends Zend_Db_Table_Abstract
     }
     public function updatePage ($id, $data)
     {
-        // find the page
         $row = $this->find($id)->current();
         if ($row) {
-            // clear any cache records which are tagged to this page
-            /*
             $cache = Zend_Registry::get('cache');
             $tag = 'page_' . $id;
             $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
-            */
+            
             // update each of the columns that are stored in the pages table
             $row->name = $data['name'];
             $row->parent_id = $data['parent_id'];
@@ -54,9 +51,12 @@ class Model_Page extends Zend_Db_Table_Abstract
     }
     public function deletePage ($id)
     {
-        // find the row that matches the id
         $row = $this->find($id)->current();
         if ($row) {
+        	$cache = Zend_Registry::get('cache');
+            $tag = 'page_' . $id;
+            $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
+            
             $row->delete();
             return true;
         } else {
