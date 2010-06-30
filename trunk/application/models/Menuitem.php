@@ -55,6 +55,10 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
                 // this is already the first item
                 return FALSE;
             } else {
+                $cache = Zend_Registry::get('cache');
+                $tag = 'menu_item_' . $itemId;
+                $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
+                
                 //find the previous item
                 $select = $this->select();
                 $select->order('position DESC');
@@ -84,11 +88,16 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
                 // this is already the last item
                 return FALSE;
             } else {
+            	$cache = Zend_Registry::get('cache');
+                $tag = 'menu_item_' . $itemId;
+                $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
+                
                 //find the next previous item
                 $select = $this->select();
                 $select->order('position ASC');
                 $select->where("position > ?", $position);
                 $select->where("menu_id = ?", $row->menu_id);
+
                 $nextItem = $this->fetchRow($select);
                 if ($nextItem) {
                     //switch positions with the next item
