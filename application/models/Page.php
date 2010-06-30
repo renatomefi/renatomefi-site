@@ -30,15 +30,14 @@ class Model_Page extends Zend_Db_Table_Abstract
             $tag = 'page_' . $id;
             $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
             
-            // update each of the columns that are stored in the pages table
             $row->name = $data['name'];
             $row->parent_id = $data['parent_id'];
             $row->save();
-            // unset each of the fields that are set in the pages table
+            
             unset($data['id']);
             unset($data['name']);
             unset($data['parent_id']);
-            // set each of the other fields in the content nodes table
+            
             if (count($data) > 0) {
                 $mdlContentNode = new Model_ContentNode();
                 foreach ($data as $key => $value) {
