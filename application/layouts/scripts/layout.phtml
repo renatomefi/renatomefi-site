@@ -90,4 +90,8 @@ $this->layout()->searchForm = $searchForm;
             </div>
         </div>
     </body>
+	<?php
+    $this->addScriptPath(APPLICATION_PATH . '/views/scripts');
+    echo $this->render('util/profiler.phtml');
+	?>
 </html>
