@@ -4,6 +4,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
 {
     protected $_name = 'menu_items';
     protected $_referenceMap = array('Menu' => array('columns' => array('menu_id') , 'refTableClass' => 'Model_Menu' , 'refColumns' => array('id') , 'onDelete' => self::CASCADE , 'onUpdate' => self::RESTRICT));
+    
     public function getItemsByMenu ($menuId)
     {
         $select = $this->select();
@@ -16,12 +17,13 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
             return null;
         }
     }
+    
     public function addItem ($menuId, $label, $pageId = 0, $link = null)
     {
-        // clear the cache entry for the menu
-        //$cache = Zend_Registry::get('cache');
+        $cache = Zend_Registry::get('cache');
         $id = $menuId;
-        //$cache->remove($id);
+        $cache->remove($id);
+        
         $row = $this->createRow();
         $row->menu_id = $menuId;
         $row->label = $label;
@@ -30,6 +32,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
         $row->position = $this->_getLastPosition($menuId) + 1;
         return $row->save();
     }
+    
     private function _getLastPosition ($menuId)
     {
         $select = $this->select();
@@ -42,6 +45,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
             return 0;
         }
     }
+    
     public function moveUp ($itemId)
     {
         $row = $this->find($itemId)->current();
@@ -70,6 +74,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
             throw new Zend_Exception("Error loading menu item");
         }
     }
+    
     public function moveDown ($itemId)
     {
         $row = $this->find($itemId)->current();
@@ -98,6 +103,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
             throw new Zend_Exception("Error loading menu item");
         }
     }
+    
     public function updateItem ($itemId, $label, $pageId = 0, $link = null)
     {
         $row = $this->find($itemId)->current();
@@ -114,6 +120,7 @@ class Model_Menuitem extends Zend_Db_Table_Abstract
             throw new Zend_Exception("Error loading menu item");
         }
     }
+    
     public function deleteItem ($itemId)
     {
         $row = $this->find($itemId)->current();

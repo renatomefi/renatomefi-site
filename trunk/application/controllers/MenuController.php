@@ -103,6 +103,6 @@ class MenuController extends Zend_Controller_Action
         if ($container instanceof Zend_Navigation_Container) {
             $this->view->navigation()->setContainer($container);
         }
-    }     
+    }
 
 }
