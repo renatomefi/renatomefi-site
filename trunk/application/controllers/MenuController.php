@@ -70,45 +70,39 @@ class MenuController extends Zend_Controller_Action
                 $this->_forward('index');
     }
 
-    public function renderAction()
+    public function renderAction ()
     {
         $menu = $this->_request->getParam('menu');
-        
+
         $bootstrap = $this->getInvokeArg('bootstrap');
         $cache = $bootstrap->getResource('cache');
         $cacheKey = 'menu_' . $menu;
-        
-        $container = $cache->load($cacheKey);
-        
-        if (!$container) {
-        	
-	        $modelMenuitem = new Model_Menuitem();
-	        $menuitems = $modelMenuitem->getItemsByMenu($menu);
-	        
-	        if (count($menuitems) > 0) {
-	            foreach ($menuitems as $item) {
-	                $tags[] = 'menu_item_' . $item->id;
-	            	$label = $item->label;
-	                if (!empty($item->link)) {
-	                    $uri = $item->link;
-	                } else {
-	                	$tags[] = 'page_' . $item->page_id;
-	                    $page = new CMS_Content_Item_Page($item->page_id);
-	                    $uri = '/page/open/title/' . $page->name;
-	                }
-	                $itemArray[] = array('label' => $label,'uri' => $uri);
-	            }
-	            $container = new Zend_Navigation($itemArray);
-	            $this->view->navigation()->setContainer($container);
-	        }
-	        if ($container instanceof Zend_Navigation_Container) {
-	        	$this->view->navigation()->setContainer($container);
-	        }
-	        
-        }
-        
-        
-    }
 
+        $container = $cache->load($cacheKey);
+        if (! $container) {
+            $mdlMenuItems = new Model_Menuitem();
+            $menuItems = $mdlMenuItems->getItemsByMenu($menu);
+            if (count($menuItems) > 0) {
+                foreach ($menuItems as $item) {
+                    $tags[] = 'menu_item_' . $item->id;
+                    $label = $item->label;
+                    if (! empty($item->link)) {
+                        $uri = $item->link;
+                    } else {
+                        $tags[] = 'page_' . $item->page_id;
+                        $page = new CMS_Content_Item_Page($item->page_id);
+                        $uri = '/page/open/title/' . $page->name;
+                    }
+                    $itemArray[] = array('label' => $label , 'uri' => $uri);
+                }
+                $container = new Zend_Navigation($itemArray);
+
+                $cache->save($container, $cacheKey, $tags);
+            }
+        }
+        if ($container instanceof Zend_Navigation_Container) {
+            $this->view->navigation()->setContainer($container);
+        }
+    }     
 
 }
