@@ -10,7 +10,10 @@ class ProfilerController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $profiler = $db->getProfiler();
+        
+        $this->view->Profiler = $profiler;
     }
 
 

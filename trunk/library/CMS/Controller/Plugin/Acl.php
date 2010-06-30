@@ -33,6 +33,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->allow('guest', 'search', array('index', 'search'));
         $acl->allow('guest', 'feed');
         $acl->allow('guest', 'bug', array('submit', 'list'));
+        $acl->deny('guest', 'profiler');
         
         // cms users can also work with content
         $acl->allow('user', 'page', array('list', 'create', 'edit', 'delete'));
