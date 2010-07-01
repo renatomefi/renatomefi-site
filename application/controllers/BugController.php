@@ -102,7 +102,7 @@ class BugController extends Zend_Controller_Action
                     $id = $this->_request->getParam('id');
                     $bug = $bugModel->find($id)->current();
                     $bugReportForm->populate($bug->toArray());
-                    $bugReportForm->getElement('date')->setValue(date('d/m/yyyy', $bug->date));
+                    $bugReportForm->getElement('date')->setValue(date('dd/mm/yyyy', $bug->date));
                 }
                 $this->view->form = $bugReportForm;
     }
