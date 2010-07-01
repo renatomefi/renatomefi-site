@@ -24,11 +24,7 @@ $this->layout()->searchForm = $searchForm;
         $this->headLink(array('rel' => 'favicon', 'href' => '/img/favicon.ico'),'PREPEND');
         echo $this->headLink();
         
-        $this->headScript()->appendFile($this->baseUrl() . '/util/js/jqt.1.2.1.min.js');
-        $this->headScript()->appendFile($this->baseUrl() . '/util/js/flowplayer-3.2.0.min.js');
-        $this->headScript()->appendFile($this->baseUrl() . '/util/js/main_functions.js');
-        $this->headScript()->appendFile($this->baseUrl() . '/util/js/jqcookies.1.0.js');
-        $this->headScript()->appendFile($this->baseUrl() . '/util/js/documentready.js');
+        $this->loadJS('/util/js');
         echo $this->headScript();
         ?>
         
