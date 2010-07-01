@@ -71,7 +71,7 @@ class PageController extends Zend_Controller_Action {
 		// create the image preview
 		$imagePreview = $pageForm->createElement ( 'image', 'image_preview' );
 		// element options
-		$imagePreview->setLabel ( 'Preview Image: ' );
+		$imagePreview->setLabel ( 'Pre-Visualizar Imagem: ' );
 		$imagePreview->setAttrib ( 'style', 'width:200px;height:auto;' );
 		// add the element to the form
 		$imagePreview->setOrder ( 4 );

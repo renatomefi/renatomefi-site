@@ -15,7 +15,7 @@ class Form_PageForm extends Zend_Form
         // create new element
         $name = $this->createElement('text', 'name');
         // element options
-        $name->setLabel('Page Name: ');
+        $name->setLabel('Nome da Página: ');
         $name->setRequired(TRUE);
         $name->setAttrib('size',40);
          // add the element to the form
@@ -24,7 +24,7 @@ class Form_PageForm extends Zend_Form
         // create new element
         $headline = $this->createElement('text', 'headline');
         // element options
-        $headline->setLabel('Headline: ');
+        $headline->setLabel('Cabeçalho: ');
         $headline->setRequired(TRUE);
         $headline->setAttrib('size',50);
         // add the element to the form
@@ -33,7 +33,7 @@ class Form_PageForm extends Zend_Form
         // create new element
         $image = $this->createElement('file', 'image');
         // element options
-        $image->setLabel('Image: ');
+        $image->setLabel('Imagem: ');
         $image->setRequired(FALSE);
         $image->setDestination(APPLICATION_PATH . '/../public_html/images/upload');
         // ensure only 1 file
@@ -48,7 +48,7 @@ class Form_PageForm extends Zend_Form
         // create new element
         $description = $this->createElement('textarea', 'description');
         // element options
-        $description->setLabel('Description: ');
+        $description->setLabel('Descrição: ');
         $description->setRequired(TRUE); 
         $description->setAttrib('cols',40);
         $description->setAttrib('rows',4);
@@ -58,7 +58,7 @@ class Form_PageForm extends Zend_Form
         // create new element
         $content = $this->createElement('textarea', 'content');
         // element options
-        $content->setLabel('Content');
+        $content->setLabel('Conteúdo');
         $content->setRequired(TRUE); 
         $content->setAttrib('cols',50); 
         $content->setAttrib('rows',12);
