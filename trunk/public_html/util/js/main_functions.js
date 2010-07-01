@@ -8,22 +8,11 @@ function animateLoginAction(action)
 	}
 		
 	if (!inActionAnimateLogin) {
+		
 		loginObject = $('#login');
-		
-		var actualState = '';
-		
 		inActionAnimateLogin = true;
-		if ($.cookie('loginMenuState') != null) {
-			actualState = $.cookie('loginMenuState');
-		} else {
-			if (loginObject.display == 'block') {
-				actualState = 'open';
-			} else {
-				actualState = 'close';
-			}
-		}	
-		
-		
+		var actualState = $.cookie('loginMenuState');
+
 		switch (actualState) {
 		case 'open':
 			actualWidth = loginObject.width();
@@ -37,19 +26,23 @@ function animateLoginAction(action)
 			case 'auto':
 				if (actualState == 'open') {
 					animateLoginClose(loginObject);
-					$.cookie('loginMenuState', 'close');
+					$.cookie('loginMenuState', 'close', { path: '/', expires: 7 });
 				} else if (actualState == 'close') {
-					$.cookie('loginMenuState', 'open');
+					$.cookie('loginMenuState', 'open', { path: '/', expires: 7 });
 					animateLoginOpen(loginObject,actualWidth);
 				}
 				break;
-			case 'open':
-				animateLoginOpen(loginObject,actualWidth);
-				$.cookie('loginMenuState', 'close');
+			case 'open': 
+				if (actualState == 'close') {
+					animateLoginOpen(loginObject,actualWidth);
+					$.cookie('loginMenuState', 'open', { path: '/', expires: 7 });
+				}
 				break;
-			case 'close':
-				animateLoginClose(loginObject);
-				$.cookie('loginMenuState', 'open');
+			case 'close' && actualState == 'open':
+				if (actualState == 'open') {
+					animateLoginClose(loginObject);
+					$.cookie('loginMenuState', 'close', { path: '/', expires: 7 });
+				}
 				break;
 		}
 	}
@@ -62,7 +55,6 @@ function animateLoginOpen(loginObj,widthObj)
 	loginObj.animate({width:widthObj}, 1500, function() {
 		loginObj.css('display','block');
 		inActionAnimateLogin = false;
-		
 	  });
 }
 
@@ -71,6 +63,5 @@ function animateLoginClose(loginObj)
 	loginObj.animate({width:0}, 1500, function() {
 		loginObj.css('display','none');
 		inActionAnimateLogin = false;
-		$.cookie('loginMenuState', 'close');
 	  });
 }
