@@ -1,0 +1,141 @@
+/*-----------------------
+         Principal
+-----------------------*/
+    body {
+        background: #c4c2cd url("../images/body/bg.png") repeat-x;
+    }
+    
+    #page {
+        width: 100%;
+        height: 100%;
+        
+        margin: 0px;
+        padding: 0px;
+        
+        font-family: 'Bitstream Vera Sans', Verdana, sans-serif;
+    }
+    
+/*-----------------------
+  Container Controles
+-----------------------*/
+
+    #controllers_container {
+        height: 25px;
+        margin: 0;
+        padding: 0;
+    }
+
+/*-----------------------
+  Container Principal
+-----------------------*/
+
+    #main_container {
+        margin: 0 auto auto auto;
+        width: 960px;
+    }
+    
+        /* --------------
+        Parte Superior */
+        #main_container #header #top {
+            height: 12px;
+            width: 100%;
+            
+            background: url("../images/main_container/top_middle.png") repeat-x;
+        }
+        
+        #main_container #header #top .left, #main_container #header #top .right {
+            height: 12px;
+            width: 12px;
+            display: inline;
+        }
+        
+        #main_container #header #top .left {
+            background: url("../images/main_container/top_left.png") no-repeat;
+            float: left;
+        }
+        
+        #main_container #header #top .right {
+            background: url("../images/main_container/top_right.png") no-repeat;
+            float: right;
+        }
+        
+        /* -------------
+        Parte Central */
+        
+        #main_container #center {
+            height: 800px;
+        }
+        
+        #main_container #center .content {
+            background-color: #FFF;
+            margin: auto;
+            height: 100%;
+        }
+        
+        #main_container #center .content .left, #main_container #center .content .right {
+            width: 12px;
+            height: 100%;
+            background-repeat: repeat-y;
+            display: inline;
+        }
+        
+        #main_container #center .content .left {
+            background: url("../images/main_container/middle_left.png");
+            float: left;
+        }
+        #main_container #center .content .middle {
+            display: inline;
+            float: left;
+        }
+        #main_container #center .content .right {
+            background: url("../images/main_container/middle_right.png");
+            float: right;
+        }
+        
+        /* --------------
+        Parte Inferior */
+        #main_container #footer #bottom {
+            height: 12px;
+            width: 100%;
+            display: block;
+            background: url("../images/main_container/bottom_middle.png") repeat-x;
+        }
+        
+        #main_container #footer #bottom .left, #main_container #footer #bottom .right {
+            height: 12px;
+            width: 12px;
+            display: inline;
+        }
+        
+        #main_container #footer #bottom .left {
+            background: url("../images/main_container/bottom_left.png") no-repeat;
+            float: left;
+        }
+                
+        #main_container #footer #bottom .right {
+            background: url("../images/main_container/bottom_right.png") no-repeat;
+            float: right;
+        }
+        #main_container #footer .content {
+            background-color: #FFF;
+            height: 80px;
+        }
+        #main_container #footer .content .left, #main_container #footer .content .right {
+            width: 12px;
+            height: 80px;
+            background-repeat: repeat-y;
+            display: inline;
+        }
+        
+        #main_container #footer .content .left {
+            background: url("../images/main_container/middle_left.png");
+            float: left;
+        }
+        #main_container #footer .content .middle {
+            display: inline;
+            float: left;
+        }
+        #main_container #footer .content .right {
+            background: url("../images/main_container/middle_right.png");
+            float: right;
+        }

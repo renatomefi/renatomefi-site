@@ -1,0 +1,252 @@
+/*-----------------------
+         Principal
+-----------------------*/
+    body {
+        background: #d3caaa url("../images/body/bg.png") repeat-x;
+    }
+    
+    #page {
+        width: 100%;
+        height: 100%;
+        
+        margin: 0px;
+        padding: 0px;
+        
+        font-family: 'Bitstream Vera Sans', Verdana, sans-serif;
+    }
+    
+    #page a {
+        text-decoration: none;
+    }
+    
+/*-----------------------
+  Container Controles
+-----------------------*/
+    .menu {
+        display: inline;
+        float: left; 
+    }
+    
+    div#account_button {
+        width: 32px;
+    	height: 32px;
+    	margin: 12px 0 0 7px;
+    	background: url("../images/main_container/user_icon.png") no-repeat;
+    	cursor: pointer;	
+    }
+
+    /* Pesquisar */
+    div#search dt {
+        padding: 0;  
+    }
+    
+    div#search dl {
+        margin: 0;	
+    }
+    
+    div#search dd {
+        margin: 0;
+    	padding: 0;
+    	float: left;
+    	display: inline;	
+    }
+    
+    div#search dd input[type="text"] {
+       border: 1px solid #D3CAAA;	
+    }
+    
+    div#search input#search {
+        display: inline;
+    	float: right;	
+    }
+
+    /* Login */
+    div#login {
+    	margin-top: 3px;
+    	display: none;
+        float: right;   
+    	font-size: 12px;
+    	background-color: #796646;
+    	color: #FFF;
+    	height: 103px;
+    	overflow: hidden;
+    	white-space: nowrap;
+    }
+    
+    div#search {
+        display: inline;
+        float: left;   
+        font-size: 12px;
+    }    
+    
+    ul.navigation {
+        padding: 0;
+    	margin: 0;	
+    }
+
+    ul.navigation li a {
+    	text-decoration: none;
+    	font-size: 12px;
+    	color: #aaa;
+    	list-style: square;
+    }
+    
+    ul.navigation li {
+    	list-style: circle inside;
+        color: #796646;
+    	float: left;
+    	margin-left: 18px;
+    	padding-bottom: 3px;
+    	border-bottom: 1px dotted #c5c5c5;
+    }
+    
+    #controllers_container {
+        height: 25px;
+        margin: 0;
+        padding: 0;
+    }
+
+/*-----------------------
+  Container Principal
+-----------------------*/
+
+    #main_container {
+        margin: 10px auto auto auto;
+        width: 960px;
+    }
+    
+        /* --------------
+        Parte Superior */
+        #main_container #header #top {
+            height: 19px;
+            width: 100%;
+            
+            background: #fff url("../images/main_container/top_middle.png") repeat-x;
+        }
+        
+        #main_container #header #top .left, #main_container #header #top .right {
+            height: 19px;
+            width: 19px;
+            display: inline;
+        }
+        
+        #main_container #header #top .left {
+            background: url("../images/main_container/top_left.png") no-repeat;
+            float: left;
+        }
+        
+        #main_container #header #top .right {
+            background: url("../images/main_container/top_right.png") no-repeat;
+            float: right;
+        }
+        
+        #main_container #header .content {
+            background-color: #FFF;
+            height: 109px;
+            overflow: hidden;
+        }
+        
+        #main_container #header .content .left, #main_container #header .content .right {
+            height: 109px;
+            width: 37px;
+            background-repeat: repeat-y;
+            display: inline;
+        }
+        
+        #main_container #header .content .left {
+            background: url("../images/main_container/top_content_left.png");
+            float: left;
+        }
+        
+        #main_container #header .content .middle {
+            display: inline;
+            float: left;
+        }
+        
+        #main_container #header .content .right {
+            background: url("../images/main_container/top_content_right.png");
+            float: right;
+        }
+        
+        /* -------------
+        Parte Central */
+        
+        #main_container #center {
+            height: 800px;
+        }
+        
+        #main_container #center .content {
+            background-color: #FFF;
+            margin: auto;
+            height: 100%;
+        }
+        
+        #main_container #center .content .left, #main_container #center .content .right {
+            width: 6px;
+            height: 100%;
+            background-repeat: no-repeat;
+            display: inline;
+        }
+        
+        #main_container #center .content .left {
+            background: url("../images/main_container/middle_left.png");
+            float: left;
+        }
+        #main_container #center .content .middle {
+            display: inline;
+            float: left;
+        }
+        #main_container #center .content .right {
+            background: url("../images/main_container/middle_right.png");
+            float: right;
+        }
+        
+        /* --------------
+        Parte Inferior */
+        #main_container #footer #bottom {
+            height: 17px;
+            
+            width: 100%;
+            display: block;
+            background: #fff url("../images/main_container/bottom_middle.png") repeat-x;
+            background-position: 0 12px;
+        }
+        
+        #main_container #footer #bottom .left, #main_container #footer #bottom .right {
+            height: 17px;
+            width: 17px;
+            display: inline;
+        }
+        
+        #main_container #footer #bottom .left {
+            background: url("../images/main_container/bottom_left.png") no-repeat;
+            float: left;
+        }
+                
+        #main_container #footer #bottom .right {
+            background: url("../images/main_container/bottom_right.png") no-repeat;
+            float: right;
+        }
+        #main_container #footer .content {
+            background-color: #FFF;
+            height: 80px;
+        }
+        #main_container #footer .content .left, #main_container #footer .content .right {
+            width: 6px;
+            height: 80px;
+            background-repeat: repeat-y;
+            display: inline;
+        }
+        
+        #main_container #footer .content .left {
+            background: url("../images/main_container/middle_left.png");
+            float: left;
+        }
+        #main_container #footer .content .middle {
+            display: inline;
+            float: left;
+        }
+        #main_container #footer .content .right {
+            background: url("../images/main_container/middle_right.png");
+            float: right;
+        }

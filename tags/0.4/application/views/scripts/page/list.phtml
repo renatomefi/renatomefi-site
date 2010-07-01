@@ -1,0 +1,13 @@
+<h2>Páginas Atuais</h2>
+<?php if ($this->pages != null) : ?>
+    <table class="spreadsheet">
+        <tr>
+            <th colspan="2">Ações</th>
+            <th>Nome</th>
+        </tr>
+        <?=$this->partialLoop('partials/_page-row.phtml',$this->pages)?>
+    </table>
+<? else : ?>
+<p>Você ainda não possui nenhuma página criada.</p>
+<? endif; ?>
+<p><a href="/page/create">Criar nova página</a></p>

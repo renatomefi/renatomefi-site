@@ -1,0 +1,10 @@
+<h2>Resultados da busca</h2>
+<? if (is_array($this->results) && count($this->results) > 0) : ?>
+<p>A sua pesquisa por <em><?=$this->keywords?></em> retornou <?=count($this->results)?> resultados.</p>
+    <? foreach ($this->results as $result) : ?>
+    <h3><a href="/page/open/title/<?=$result->page_name?>"><?=$result->page_headline?></a></h3>
+    <p><?=$result->page_description?></p>
+    <? endforeach; ?>
+<? else : ?>
+<p>Sua pesquisa não retornou resultados.</p>
+<? endif; ?>

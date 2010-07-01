@@ -1,0 +1,9 @@
+<h2>Contato</h2>
+<? if ($this->messageProcessed && $this->sendError) : ?>
+<p>Desculpe, houve um erro ao enviar sua mensagem.<br />
+   Por favor entre em contato através do contato@renatomefi.com.br</p>
+<? elseif ($this->messageProcessed &! $this->sendError) : ?>
+<p>Obrigado, sua mensagem foi enviada com sucesso!</p>
+<? else : ?>
+<?=$this->Form?>
+<? endif; ?>

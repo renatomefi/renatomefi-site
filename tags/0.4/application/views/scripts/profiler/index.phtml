@@ -1,0 +1,26 @@
+<?php 
+if($this->Profiler->getEnabled() && $this->Profiler->getTotalNumQueries() > 0) { ?>
+<div style='text-align:center'>
+<h2>Database Profiling Report</h2>
+    <p>Total queries executed: <?php echo $this->Profiler->getTotalNumQueries()?></p>
+    <p>Total elapsed time: <?php echo $this->Profiler->getTotalElapsedSecs()?></p>
+</div>
+<table class='spreadsheet' style='margin:10px auto'>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Query</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($this->Profiler->getQueryProfiles() as $queryNumber => $query) { ?>
+    <tr>
+        <td>(<?php echo $queryNumber + 1?>)</td>
+        <td><?php echo $query->getQuery();?></td>
+        <td><?php echo $query->getElapsedSecs();?></td>
+    </tr>
+<?php }?>
+</tbody>
+</table>
+<?php }?>
