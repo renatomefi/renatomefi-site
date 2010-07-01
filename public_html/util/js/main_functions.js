@@ -9,33 +9,47 @@ function animateLoginAction(action)
 		
 	if (!inActionAnimateLogin) {
 		loginObject = $('#login');
+		
 		var actualState = '';
 		
 		inActionAnimateLogin = true;
+		if ($.cookie('loginMenuState') != null) {
+			actualState = $.cookie('loginMenuState');
+		} else {
+			if (loginObject.display == 'block') {
+				actualState = 'open';
+			} else {
+				actualState = 'close';
+			}
+		}	
 		
-		if (loginObject.css('display') == 'block') {
-			actualState = 'open';
+		
+		switch (actualState) {
+		case 'open':
 			actualWidth = loginObject.width();
-		} else if (loginObject.css('display') == 'none') {
-			actualState = 'close';
-
-			if (typeof(actualWidth) == "undefined") {actualWidth = loginObject.width()};
-			//actualWidth = (actualWidth != '0')? 'loginObject.width()' : '0';
+			break;
+		case 'close':
+			if (typeof(actualWidth) == "undefined") {actualWidth = loginObject.width();};
+			break;
 		}
-		
+
 		switch (action) {
 			case 'auto':
 				if (actualState == 'open') {
 					animateLoginClose(loginObject);
+					$.cookie('loginMenuState', 'close');
 				} else if (actualState == 'close') {
+					$.cookie('loginMenuState', 'open');
 					animateLoginOpen(loginObject,actualWidth);
 				}
 				break;
 			case 'open':
 				animateLoginOpen(loginObject,actualWidth);
+				$.cookie('loginMenuState', 'close');
 				break;
 			case 'close':
 				animateLoginClose(loginObject);
+				$.cookie('loginMenuState', 'open');
 				break;
 		}
 	}
@@ -48,6 +62,7 @@ function animateLoginOpen(loginObj,widthObj)
 	loginObj.animate({width:widthObj}, 1500, function() {
 		loginObj.css('display','block');
 		inActionAnimateLogin = false;
+		
 	  });
 }
 
@@ -56,5 +71,6 @@ function animateLoginClose(loginObj)
 	loginObj.animate({width:0}, 1500, function() {
 		loginObj.css('display','none');
 		inActionAnimateLogin = false;
+		$.cookie('loginMenuState', 'close');
 	  });
 }
