@@ -36,30 +36,53 @@
     }
 
     /* Pesquisar */
-    div#search dt {
-        padding: 0;  
-    }
-    
-    div#search dl {
-        margin: 0;	
-    }
-    
-    div#search dd {
-        margin: 0;
-    	padding: 0;
-    	float: left;
-    	display: inline;	
-    }
-    
-    div#search dd input[type="text"] {
-       border: 1px solid #D3CAAA;	
-    }
-    
-    div#search input#search {
+    div#search div div div {
         display: inline;
-    	float: right;	
+    	float: left;	
     }
-
+    
+    div#search input[type="text"] {
+       border: 1px solid #D3CAAA;	
+       height: 17px;
+       margin-top: 2px;
+    }
+    
+    div#search input[type="image"] {
+       border: 0;   
+       margin: -2px 0 0 2px;
+    }
+    
+    div#search div {
+        display: inline;	
+    	height: 25px;
+    	
+    }
+    
+    div#search div#left, div#search div#right {
+        width: 2px;	
+    	margin-top: -10px;
+    }
+    
+    div#search div#left {
+    	background: #fff url("../images/main_container/search_box_right.png");
+    	float: right;
+    	
+    }
+    
+    div#search div#right {
+        background: #fff url("../images/main_container/search_box_left.png");
+    	float: right;
+    }
+     
+    div#search div#content {
+        display: inline;
+        float: right;   
+        font-size: 12px;
+        background-color: #796646;
+        margin-top:-10px;
+        height: 25px;
+    }    
+    
     /* Login */
     div#login {
     	margin-top: 3px;
@@ -72,16 +95,7 @@
     	overflow: hidden;
     	white-space: nowrap;
     }
-    
-    div#search {
-        display: inline;
-        float: right;   
-        font-size: 12px;
-    	background-color: #796646;
-    	margin-top: 1px;
-    	height: 27px;
-    }    
-    
+
     ul.navigation {
         padding: 0;
     	margin: 0;	
