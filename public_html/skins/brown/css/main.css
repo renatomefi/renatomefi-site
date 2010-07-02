@@ -75,8 +75,11 @@
     
     div#search {
         display: inline;
-        float: left;   
+        float: right;   
         font-size: 12px;
+    	background-color: #796646;
+    	margin-top: 1px;
+    	height: 27px;
     }    
     
     ul.navigation {
@@ -118,14 +121,13 @@
         /* --------------
         Parte Superior */
         #main_container #header #top {
-            height: 19px;
+            height: 28px;
             width: 100%;
-            
             background: #fff url("../images/main_container/top_middle.png") repeat-x;
         }
         
         #main_container #header #top .left, #main_container #header #top .right {
-            height: 19px;
+            height: 28px;
             width: 19px;
             display: inline;
         }
