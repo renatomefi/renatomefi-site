@@ -6,26 +6,28 @@ class Form_SearchForm extends Zend_Form
 	   $query = $this->createElement('text','query');
 	   $query->setRequired(true);
 	   $query->setAttrib('size',20);
-	   $query->addDecorator(array('div_d' => 'HtmlTag'),array('tag' => 'div'));
+	   $query->setDecorators(array(
+            'ViewHelper',
+            array('HtmlTag', array('tag' => 'div'))
+       ));
+       $query->removeDecorator('label');
 	   $this->addElement($query);
 	   
-	   $submit = $this->createElement('submit','search');
-	   $submit->setLabel('Procurar');
-	   //$submit->setDecorators(array('ViewHelper'));
+	   $submit = $this->createElement('image','search');
+	   $submit->setValue('/skins/brown/images/main_container/search_icon.png');
 	   $submit->setDecorators(array(
 		    'ViewHelper',
-		    'Description',
-		    array('HtmlTag', array('tag' => null)),
-		    array('Label', array('tag' => null)),
-		));
-		$this->addElement($submit);
-		$this->setDecorators(array(
+		    array('HtmlTag', array('tag' => 'div'))
+	   ));
+	   $this->addElement($submit);
+
+	   $this->setDecorators(array(
 		    'FormElements',
 		    array('HtmlTag', array('tag' => 'div')),
-		    'Form',
-		));
+		    'Form'
+	   ));
 	   
-	   
+	   $this->setMethod('get');
 	}
 }
 
