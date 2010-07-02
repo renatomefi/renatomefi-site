@@ -37,7 +37,11 @@ $this->layout()->searchForm = $searchForm;
                 <div id="header">
                     <div id="top">
                         <div class="left"></div>
+
                         <div class="right"></div>
+                        <div id="search">
+                        <?=$this->layout()->searchForm?>
+                        </div>
                     </div>
                     <div class="content">
                         <div class="left"></div>
@@ -63,9 +67,6 @@ $this->layout()->searchForm = $searchForm;
                                 <?=$this->layout()->content?>
                                 </div>
                             </div>
-                        <div id="search">
-                            <?=$this->layout()->searchForm?>
-                        </div>
                         <div class="right"></div> 
                     </div>  
                 </div>
