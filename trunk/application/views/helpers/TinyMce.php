@@ -23,6 +23,9 @@
  *
  * Used to render javascript for the TinyMce textarea conversion.
  * @author jurian
+ * 
+ * Render with profiles in .ini file
+ * @author Renato Mendes Figueiredo
  *
  */
 class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
@@ -42,13 +45,8 @@ class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
                              'directionality', 'fullscreen', 'noneditable', 'visualchars',
                              'nonbreaking', 'xhtmlxtras', 'imagemanager', 'filemanager','template'));
 
-    protected $_config = array('mode'  =>'specific_textareas',
-                               'element_format' => 'html',);
-    protected $_configSimple = array('theme' => 'simple',
-                               'editor_selector' => 'mceEditorSimple');
-    protected $_configAdvanced = array('theme' => 'advanced',
-                               'editor_selector' => 'mceEditorAdvanced');
-        
+    protected $_configFile;
+    protected $_configPath;
     protected $_scriptPath;
     protected $_scriptFile;
     protected $_useCompressor = false;
@@ -100,7 +98,18 @@ class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
     {
         $this->_scriptFile = (string) $file;
     }
-
+    
+    public function setConfigPath ($path)
+    {
+        $this->_configPath = rtrim($path,'/');
+        return $this;
+    }
+    
+    public function setConfigFile ($file)
+    {
+    	$this->_configFile = (string) $file;
+    }
+    
     public function setCompressor ($switch)
     {
         $this->_useCompressor = (bool) $switch;
@@ -156,47 +165,21 @@ class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
     protected function _renderEditor ()
     {
         $script = "";
-        $paramsSimple = array();
-        $paramsAdvanced = array();
         
-        foreach ($this->_config as $name => $value) {
-            if (is_array($value)) {
-                $value = implode(',', $value);
-            }
-            if (!is_bool($value)) {
-                $value = '"' . $value . '"';
-            }
-            $paramsSimple[] = $name . ': ' . $value;
-            $paramsAdvanced[] = $name . ': ' . $value;
+        $config = new Zend_Config_Ini($this->_configPath . '/' . $this->_configFile);
+        $profiles = array_keys($config->getExtends());
+        
+        foreach ($profiles as $profile) {
+        	$script .= 'tinyMCE.init({' . PHP_EOL;
+        	$params = array();
+        	foreach ($config->get($profile) as $name => $value) {
+        		$params[] = $name . ": " . '"' . $value . '"';
+        	}
+        	$params[] = 'editor_selector: "mceEditor' . ucfirst($profile) . '"';
+        	$script .= implode(',' . PHP_EOL, $params) . PHP_EOL;
+        	$script .= '});';
         }
-        
-        foreach ($this->_configSimple as $name => $value) {
-            if (is_array($value)) {
-                $value = implode(',', $value);
-            }
-            if (!is_bool($value)) {
-                $value = '"' . $value . '"';
-            }
-            $paramsSimple[] = $name . ': ' . $value;
-        }
-        
-        foreach ($this->_configAdvanced as $name => $value) {
-            if (is_array($value)) {
-                $value = implode(',', $value);
-            }
-            if (!is_bool($value)) {
-                $value = '"' . $value . '"';
-            }
-            $paramsAdvanced[] = $name . ': ' . $value;
-        }
-        
-        $script .= 'tinyMCE.init({' . PHP_EOL;
-        $script .= implode(',' . PHP_EOL, $paramsSimple) . PHP_EOL;
-        $script .= '});';
-        
-        $script .= 'tinyMCE.init({' . PHP_EOL;
-        $script .= implode(',' . PHP_EOL, $paramsAdvanced) . PHP_EOL;
-        $script .= '});';
+
         $this->view->headScript()->appendScript($script);
         return $this;
     }
