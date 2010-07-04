@@ -202,7 +202,6 @@
         
         #main_container #center .content #info {
             width: 620px;	
-            height: 100%;
             position: relative;
         }
 
@@ -250,18 +249,17 @@
 			}
 			
 			.handle { 
-				top: 1px;
-			    border:1px solid #cfcfcf;
-			    background-color:#fff;
-			    height:20px;
-			    width:8px;
+			    left: -6px;
+			    background-image: url("../images/main_container/handle.png");
+			    height:23px;
+			    width:14px;
 			    position:absolute; 
 			    display:block;
 			    cursor:move;
 			}
 			
 			.handle:active {
-			    background:blue;        
+			    background-image: url("../images/main_container/handle_active.png");   
 			}
 			
 			.range {
