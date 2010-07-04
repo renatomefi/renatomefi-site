@@ -9,7 +9,6 @@ $this->layout()->dbProfiler = $this->action('index','profiler');
 $searchForm = new Form_SearchForm();
 $searchForm->setAction('/search');
 $this->layout()->searchForm = $searchForm;
-
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head>
@@ -25,7 +24,9 @@ $this->layout()->searchForm = $searchForm;
         echo $this->headLink();
         
         $this->loadJS('/util/js');
-        $this->tinyMce()->setOptions(array())->render();
+        $this->tinyMce()->setOptions(array(
+            'configPath' => APPLICATION_PATH . '/configs',
+            'configFile' => 'tinymce.ini'))->render();
         echo $this->headScript();
         ?>
         
