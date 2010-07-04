@@ -24,9 +24,7 @@ $this->layout()->searchForm = $searchForm;
         echo $this->headLink();
         
         $this->loadJS('/util/js');
-        $this->tinyMce()->setOptions(array(
-            'configPath' => APPLICATION_PATH . '/configs',
-            'configFile' => 'tinymce.ini'))->render();
+        $this->tinyMce()->setConfig(APPLICATION_PATH . '/configs', 'tinymce.ini')->render();
         echo $this->headScript();
         ?>
         

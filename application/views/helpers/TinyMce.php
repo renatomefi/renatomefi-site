@@ -31,25 +31,12 @@
 class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
 {
     protected $_enabled = false;
-    protected $_defaultScript = '/util/js/tiny_mce/tiny_mce.js';
-
-    protected $_supported = array(
-        'mode'      => array('textareas', 'specific_textareas', 'exact', 'none'),
-        'theme'     => array('simple', 'advanced'),
-        'format'    => array('html', 'xhtml'),
-        'languages' => array('en'),
-        'plugins'   => array('style', 'layer', 'table', 'save',
-                             'advhr', 'advimage', 'advlink', 'emotions',
-                             'iespell', 'insertdatetime', 'preview', 'media',
-                             'searchreplace', 'print', 'contextmenu', 'paste',
-                             'directionality', 'fullscreen', 'noneditable', 'visualchars',
-                             'nonbreaking', 'xhtmlxtras', 'imagemanager', 'filemanager','template'));
-
+    
+    protected $_config;
     protected $_configFile;
     protected $_configPath;
     protected $_scriptPath;
     protected $_scriptFile;
-    protected $_useCompressor = false;
 
     public function __set($name, $value)
     {
@@ -68,18 +55,13 @@ class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
         }
         return $this->$method();
     }
-
-    public function setOptions(array $options)
+    
+    public function setConfig($path, $file)
     {
-        $methods = get_class_methods($this);
-        foreach ($options as $key => $value) {
-            $method = 'set' . ucfirst($key);
-            if (in_array($method, $methods)) {
-                $this->$method($value);
-            } else {
-                $this->_config[$key] = $value;
-            }
-        }
+        $this->_configPath = $path;
+        $this->_configFile = $file;
+
+        
         return $this;
     }
 
@@ -109,75 +91,67 @@ class Zend_View_Helper_TinyMce extends Zend_View_Helper_Abstract
     {
     	$this->_configFile = (string) $file;
     }
-    
-    public function setCompressor ($switch)
-    {
-        $this->_useCompressor = (bool) $switch;
-        return $this;
-    }
 
     public function render()
     {
         if (false === $this->_enabled) {
+        	$this->_renderOptions();
             $this->_renderScript();
-            $this->_renderCompressor();
             $this->_renderEditor();
         }
         $this->_enabled = true;
     }
-
-    protected function _renderScript ()
+    
+    protected function _renderOptions()
     {
-        if(null === $this->_scriptFile) {
-            $script = $this->_defaultScript;
-        } else {
-            $script = $this->_scriptPath . '/' . $this->_scriptFile;
+        $config = new Zend_Config_Ini($this->_configPath . '/' . $this->_configFile);
+        $profiles = array_keys($config->getExtends());
+        $methods = get_class_methods($this);
+        
+        foreach ($profiles as $profile) {
+            $this->_config[$profile] = array();
+            foreach ($config->get($profile) as $name => $value) {
+                $method = 'set' . ucfirst($name);
+                if (in_array($method, $methods)) {
+                    $this->$method($value);
+                } else {
+                    if ($value == "true" || $value == "false") {
+                	   $this->_config[$profile][] = $name . ": " . $value;
+                    } else {
+                       $this->_config[$profile][] = $name . ": " . '"' . $value . '"';
+                    }
+                }
+            }
         }
-
-        $this->view->headScript()->appendFile($script);
         return $this;
     }
-
-    protected function _renderCompressor ()
+    
+    protected function _renderScript ()
     {
-        if (false === $this->_useCompressor) {
-            return;
-        }
+        $script = $this->_scriptPath . '/' . $this->_scriptFile;
 
-        if (isset($this->_config['plugins']) && is_array($this->_config['plugins'])) {
-            $plugins = $this->_config['plugins'];
-        } else {
-            $plugins = $this->_supported['plugins'];
-        }
-        
-        $script = 'tinyMCE_GZ.init({' . PHP_EOL
-                . 'themes: "' . implode(',', $this->_supported['theme']) . '",' . PHP_EOL
-                . 'plugins: "'. implode(',', $plugins) . '",' . PHP_EOL
-                . 'languages: "' . implode(',', $this->_supported['languages']) . '",' . PHP_EOL
-                . 'disk_cache: true,' . PHP_EOL
-                . 'debug: false' . PHP_EOL
-                . '});';
-
-        $this->view->headScript()->appendScript($script);
+        $this->view->headScript()->appendFile($script);
         return $this;
     }
 
     protected function _renderEditor ()
     {
         $script = "";
-        
-        $config = new Zend_Config_Ini($this->_configPath . '/' . $this->_configFile);
-        $profiles = array_keys($config->getExtends());
-        
-        foreach ($profiles as $profile) {
-        	$script .= 'tinyMCE.init({' . PHP_EOL;
+
+        while ($profile = current($this->_config)) {
+
         	$params = array();
-        	foreach ($config->get($profile) as $name => $value) {
-        		$params[] = $name . ": " . '"' . $value . '"';
-        	}
-        	$params[] = 'editor_selector: "mceEditor' . ucfirst($profile) . '"';
+
+            foreach ($profile as $value) {
+            	$params[] = $value;
+            }
+        	$params[] = 'editor_selector: "mceEditor' . ucfirst(key($this->_config)) . '"';
+
+        	$script .= 'tinyMCE.init({' . PHP_EOL;
         	$script .= implode(',' . PHP_EOL, $params) . PHP_EOL;
         	$script .= '});';
+        	
+        	next($this->_config);
         }
 
         $this->view->headScript()->appendScript($script);
