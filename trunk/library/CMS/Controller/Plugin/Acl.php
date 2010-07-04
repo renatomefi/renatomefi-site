@@ -25,7 +25,6 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         
         // set up the access rules
         $acl->allow(null, array('index', 'error'));
-        
         // a guest can only read content and login
         $acl->allow('guest', 'page', array('index', 'open'));
         $acl->allow('guest', 'menu', array('render'));
