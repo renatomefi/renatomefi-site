@@ -57,7 +57,7 @@ class Form_PageForm extends Zend_Form
         $this->addElement($description);
 
         // create new element
-        $content = $this->createElement('textarea', 'page_content');
+        $content = $this->createElement('textarea', 'pcontent');
         // element options
         $content->setLabel('Conteúdo: ');
         $content->setRequired(TRUE); 
