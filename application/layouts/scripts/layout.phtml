@@ -9,12 +9,12 @@ $this->layout()->dbProfiler = $this->action('index','profiler');
 $searchForm = new Form_SearchForm();
 $searchForm->setAction('/search');
 $this->layout()->searchForm = $searchForm;
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head>
     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-        <meta name="google-site-verification" content="jTk084YZmt0uZehdXiIG-kmnIfmt_kMk4b3d29Dm_O0" />
         <?php
         echo $this->headTitle();
         
@@ -25,6 +25,7 @@ $this->layout()->searchForm = $searchForm;
         echo $this->headLink();
         
         $this->loadJS('/util/js');
+        $this->tinyMce()->setOptions(array())->render();
         echo $this->headScript();
         ?>
         

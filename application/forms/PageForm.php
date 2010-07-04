@@ -52,16 +52,18 @@ class Form_PageForm extends Zend_Form
         $description->setRequired(TRUE); 
         $description->setAttrib('cols',40);
         $description->setAttrib('rows',4);
+        $description->setOptions(array('class' => 'mceEditorSimple'));
         // add the element to the form
         $this->addElement($description);
 
         // create new element
-        $content = $this->createElement('textarea', 'content');
+        $content = $this->createElement('textarea', 'page_content');
         // element options
-        $content->setLabel('Conteúdo');
+        $content->setLabel('Conteúdo: ');
         $content->setRequired(TRUE); 
         $content->setAttrib('cols',50); 
         $content->setAttrib('rows',12);
+        $content->setOptions(array('class' => 'mceEditorAdvanced'));
         // add the element to the form
         $this->addElement($content);
 
