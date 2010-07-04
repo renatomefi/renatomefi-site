@@ -99,20 +99,4 @@ $this->layout()->searchForm = $searchForm;
         </div>
     </body>
 	<?=$this->layout()->dbProfiler?>
-	<script>
-    var scroll = $("#info");
-
-    $(":range").rangeinput({
-        onSlide: function(ev, step)  {
-            scroll.css({top: -step});
-        },
-        progress: true,
-        value: 100,
-        vertical: true,
-        change: function(e, i) {
-            scroll.animate({top: -i}, "fast");
-        },
-        speed: 0
-    });
-	</script>
 </html>
