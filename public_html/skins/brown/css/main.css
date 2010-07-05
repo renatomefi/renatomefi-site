@@ -218,6 +218,7 @@
         }
         #main_container #center .content .middle {
         	height: 780px;
+            margin-left: 4px;
             overflow: hidden;
             display: inline;
             float: left;
@@ -231,6 +232,7 @@
              * Scroll Div
              */
 			.slider { 
+				left: 10px;
 				top:120px;
 				height: 500px;
 			    position:relative; 
@@ -275,6 +277,7 @@
             	border: 3px solid #796646;
             	display: inline;
             	float: right;	
+            	margin-right: 4px;
             }
             
             div.block_title {
@@ -284,7 +287,28 @@
             	background-color: #796646;
                 display: inline;
                 float: right;
-            	
+            	margin-right: 4px;
+            }
+            
+            div.block_title #left, div.block_title #right, div.block_title #title  {
+            	height: 20px;
+            	width: 18px;
+            	display: inline;
+            }
+            
+            div.block_title #left {
+                background-image: url("../images/main_container/block_title_left.png");
+            	float: left;	
+            }
+            div.block_title #title {
+                width: 260px;
+            	float: left;
+            	text-align: center;
+            	color: #FFF; 
+            }
+            div.block_title #right {
+                background-image: url("../images/main_container/block_title_right.png");
+                float: right;    
             }
         /* --------------
         Parte Inferior */

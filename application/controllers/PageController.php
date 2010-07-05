@@ -30,7 +30,7 @@ class PageController extends Zend_Controller_Action {
 				$itemPage->name = $pageForm->getValue ( 'name' );
 				$itemPage->headline = $pageForm->getValue ( 'headline' );
 				$itemPage->description = $pageForm->getValue ( 'description' );
-				$itemPage->pcontent = $pageForm->getValue ( 'pcontent' );
+				$itemPage->content = $pageForm->getValue ( 'pcontent' );
 				// upload the image
 				if ($pageForm->image->isUploaded ()) {
 					$pageForm->image->receive ();
@@ -57,7 +57,7 @@ class PageController extends Zend_Controller_Action {
 				$itemPage->name = $pageForm->getValue ( 'name' );
 				$itemPage->headline = $pageForm->getValue ( 'headline' );
 				$itemPage->description = $pageForm->getValue ( 'description' );
-				$itemPage->pcontent = $pageForm->getValue ( 'pcontent' );
+				$itemPage->content = $pageForm->getValue ( 'pcontent' );
 				if ($pageForm->image->isUploaded ()) {
 					$pageForm->image->receive ();
 					$itemPage->image = '/images/upload/' . basename ( $pageForm->image->getFileName () );
@@ -68,6 +68,7 @@ class PageController extends Zend_Controller_Action {
 			}
 		}
 		$pageForm->populate ( $itemPage->toArray () );
+		$pageForm->getElement('pcontent')->setValue($itemPage->content);
 		// create the image preview
 		$imagePreview = $pageForm->createElement ( 'image', 'image_preview' );
 		// element options
