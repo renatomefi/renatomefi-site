@@ -21,7 +21,7 @@ class FeedController extends Zend_Controller_Action
         $feedArray['description'] = 'Últimas notícias';
         $feedArray['lastBuildDate'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
         $feedArray['published'] = Zend_Date::now()->toString(Zend_Date::TIMESTAMP);
-        $feedArray['charset'] = 'UTF8';
+        $feedArray['charset'] = 'ISO8859-1';
         
         $mdlPage = new Model_Page();
         $recentPages = $mdlPage->getRecentPages();
