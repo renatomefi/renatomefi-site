@@ -1,0 +1,15 @@
+    <tr class="links">
+        <td>
+            <a href="/maladireta/mensagem/edit/id/<?=$this->id?>">Editar</a>
+        </td>
+        <td>
+            <a href="/maladireta/send/id/<?=$this->id?>">Enviar</a>
+        </td>
+        <td>
+            <a href="/maladireta/mensagem/delete/id/<?=$this->id?>">Excluir</a>
+        </td>
+        <td><?=$this->nome?></td>
+        <td><?=$this->assunto?></td>
+        <td><?=date('d/m/Y',$this->criado)?></td>
+        <td><?=$this->autor_id?></td>
+    </tr>

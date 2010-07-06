@@ -1,0 +1,17 @@
+<h2>Mensagens</h2>
+<? if (count($this->mensagens) > 0) : ?>
+    <table class="spreadsheet">
+        <tr>
+            <th colspan="3">Ações</th>
+            <th>Nome</th>
+            <th>Assunto</th>
+            <th>Criação</th>
+            <th>Autor</th>
+        </tr>
+        <?=$this->partialLoop('partials/_mensagem-row.phtml',$this->mensagens)?>
+    </table>
+<? else : ?>
+<p>Nenhuma mensagem</p>
+<? endif; ?>
+<p><a href="/maladireta/mensagem/create">Criar nova mensagem</a></p>
+
