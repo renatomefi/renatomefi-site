@@ -58,6 +58,21 @@ class Maladireta_Model_Mensagem extends Zend_Db_Table_Abstract
             return null;
         }
     }
+    
+    public function getMensagemIdByNome($nome)
+    {
+    	$select = $this->select();
+    	$select->where('nome= ?',$nome);
+    	$select->limit(1);
+    	
+    	$result = $this->fetchRow($select);
+    	
+    	if ($result) {
+    		return $result->id;
+    	} else {
+    		return null;
+    	}
+    }
 }
 
 ?>
