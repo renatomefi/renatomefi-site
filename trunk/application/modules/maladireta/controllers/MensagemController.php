@@ -5,6 +5,26 @@ class Maladireta_MensagemController extends Zend_Controller_Action {
 	
 	}
 	
+	public function visualizarAction()
+	{
+		$mdlMensagem = new Maladireta_Model_Mensagem();
+		
+		$nome = $this->_request->getParam('nome');
+		
+		if ($nome != null) {
+			$id = $mdlMensagem->getMensagemIdByNome($nome);
+		} else {
+		    $id = $this->_request->getParam('id');	
+		}
+		
+		$mensagem = $mdlMensagem->find($id)->current();
+		
+	    $this->_helper->layout->disableLayout();
+	    //$this->_helper->viewRenderer->setNoRender(true);
+	    
+	    $this->view->mensagem = $mensagem;
+	}
+	
 	public function listAction() {
 		$mdlMensagem = new Maladireta_Model_Mensagem();
 		$mensagens = $mdlMensagem->getMensagens();
@@ -63,13 +83,12 @@ class Maladireta_MensagemController extends Zend_Controller_Action {
         			$this->_redirect('/maladireta/mensagem/list');
         		}
         	}
-        } else {
+        }
             $frmMensagem->getElement('id')->setValue($mensagem->id);
             $frmMensagem->getElement('autor')->setValue($autor['first_name'] . ' ' . $autor['last_name']);
             $frmMensagem->getElement('nome')->setValue($mensagem->nome);
             $frmMensagem->getElement('assunto')->setValue($mensagem->assunto);
             $frmMensagem->getElement('mensagem')->setValue($mensagem->mensagem);
-        }
 		
 		$frmMensagem->setMethod('post');
         $frmMensagem->setAction('/maladireta/mensagem/edit');
