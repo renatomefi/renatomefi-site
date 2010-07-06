@@ -21,11 +21,10 @@ class Maladireta_Model_Mensagem extends Zend_Db_Table_Abstract
         return $id;
     }
     
-    public function updateMensagem($id,$autor_id,$nome,$assunto,$mensagem)
+    public function updateMensagem($id,$nome,$assunto,$mensagem)
     {
     	$currentMensagem = $this->find($id)->current();
     	if ($currentMensagem) {
-	        $currentMensagem->autor_id = $autor_id;
 	        $currentMensagem->nome = $nome;
 	        $currentMensagem->assunto = $assunto;
 	        $currentMensagem->mensagem = $mensagem;
