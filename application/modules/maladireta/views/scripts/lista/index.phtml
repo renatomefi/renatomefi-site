@@ -1,0 +1,13 @@
+<h2>Listas para envio de Mala Direta</h2>
+<? if (count($this->listas) > 0) : ?>
+    <table class="spreadsheet">
+        <tr>
+            <th colspan="3">Ações</th>
+            <th>Nome</th>
+        </tr>
+        <?=$this->partialLoop('partials/_lista-row.phtml',$this->listas) ?>
+    </table>
+<? else : ?>
+<p>Nenhuma lista.</p>
+<? endif; ?>
+<p><a href="/maladireta/lista/create">Criar nova lista</a></p>

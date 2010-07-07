@@ -1,12 +1,12 @@
 <?php
-class Maladireta_Model_lista extends Zend_Db_Table_Abstract
+class Maladireta_Model_Lista extends Zend_Db_Table_Abstract
 {
 	protected $_name = 'maladireta_lista';
 	
 	public function getListas()
 	{
 		$select = $this->select();
-		$select->order('name');
+		$select->order('nome');
 		
 		$listas = $this->fetchAll($select);
 		
