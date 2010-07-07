@@ -1,19 +1,20 @@
+table.spreadsheet {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 2px solid #796646;
+	border-bottom: 4px solid #796646;
+	border-left: 2px solid #796646;
+	border-right: 2px solid #796646;
+}
+
 table.spreadsheet th {
-	font-size: 18px;
-	font-weight: bold;
-	background-color: #d3caaa;
-	border: 1px solid #796646;
-	text-align: center;
+	background: #796646 url("../images/main_container/spreadsheet_th_bg.png") repeat-x;
+	border-bottom: 2px solid #796646;
+    color: #FFF;
 }
 
 table.spreadsheet td {
-    font-size: 14px;
-	text-align: left;
-	background-color: #d3d0c6;
-	border: 1px solid #796646;
-}
-
-table.spreadsheet a {
-	color: #000042;
-	font-weight: bold;	
+	background-color: #d9cebb;
+	border-right: 1px solid #796646;
+	border-bottom: 1px solid #FFF;
 }
