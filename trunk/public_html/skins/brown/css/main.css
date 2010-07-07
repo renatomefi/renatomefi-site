@@ -200,7 +200,7 @@
             height: 800px;        
         }
         
-        #main_container #center .content #info {
+        #main_container #center .content div#info {
             width: 620px;	
             position: relative;
         }
