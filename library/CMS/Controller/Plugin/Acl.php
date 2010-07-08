@@ -24,6 +24,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->add(new Zend_Acl_Resource('profiler'));
         $acl->add(new Zend_Acl_Resource('mensagem'));
         $acl->add(new Zend_Acl_Resource('lista'));
+        $acl->add(new Zend_Acl_Resource('assinante'));
         
         // set up the access rules
         $acl->allow(null, array('index', 'error'));
