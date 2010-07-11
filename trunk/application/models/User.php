@@ -66,5 +66,37 @@ class Model_User extends Zend_Db_Table_Abstract
     		throw new Zend_Exception('Não foi possível deletar o usuário; Usuário não encontrado.');
     	}
     }
+    
+    public function editapresentacaoUser($id,$imagem,$apresentacao_titulo,$apresentacao)
+    {
+    	$rowUser = $this->find($id)->current();
+    	$rowUser->imagem = $imagem;
+    	$rowUser->apresentacao_titulo = $apresentacao_titulo;
+    	$rowUser->apresentacao = $apresentacao;
+    	
+    	$return = $rowUser->save();
+    	if ($return) {
+    		return $return;
+    	} else {
+    		return null;
+    	}
+    	
+    }
+    
+    public function getIdByUsername($username)
+    {
+    	$select = $this->select();
+    	$select->where('username = ?',$username);
+    	$select->limit(1);
+    	
+    	$result = $this->fetchRow($select);
+    	
+    	if ($result) {
+    		return $result->id;
+    	} else {
+    		throw new Zend_Exception('Usuário não encontrado no BD.');
+    	}
+    	
+    }
 }
 ?>
