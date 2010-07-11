@@ -301,15 +301,43 @@
                 background-image: url("../images/main_container/block_title_left.png");
             	float: left;	
             }
+            
             div.block_title #title {
                 width: 260px;
             	float: left;
             	text-align: center;
-            	color: #FFF; 
+            	color: #FFF;
+            	font-weight: bold;
+            	font-size: 14px;
+            	margin-top: 3px;
             }
+            
             div.block_title #right {
                 background-image: url("../images/main_container/block_title_right.png");
                 float: right;    
+            }
+            
+            div.block#b1 div#texto {
+                font-size: 11px;
+            	padding-left: 3px;
+            	padding-right: 3px;
+
+            }
+            
+            div.block#b1 h4 {
+                margin: 0 0 5px 0;
+                padding-left: 3px;
+                padding-right: 3px;
+            	text-align: center;             	
+            }
+            
+            div.block#b1 #foto {
+                display: inline;
+            	margin: 3px 3px 0 3px;
+            	clear: left;
+            	float: left;
+            	height: 100px;
+            	width: 100px;	 
             }
         /* --------------
         Parte Inferior */
