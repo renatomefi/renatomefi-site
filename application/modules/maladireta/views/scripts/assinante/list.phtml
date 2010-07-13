@@ -1,0 +1,14 @@
+<h2>Assinantes da Lista "<?=$this->lista->nome?>"</h2>
+<? if (count($this->assinantes) > 0) : ?>
+<table class="spreadsheet">
+    <tr>
+	    <th colspan="2">Ações</th>
+	    <th>Nome</th>
+	    <th>Email</th>
+    </tr>
+    <?=$this->partialLoop('partials/_assinante-row.phtml',$this->assinantes)?>
+</table>
+<? else : ?>
+<p>Nenhuma assinante para esta lista</p>
+<? endif; ?>
+<p><a href="/maladireta/assinante/create/lista/<?=$this->lista->id?>">Adicionar novo assinante</a></p>
