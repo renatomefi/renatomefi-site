@@ -94,7 +94,7 @@ class Maladireta_EnviarController extends Zend_Controller_Action
                 
 			} else {
 				$result = false;
-				$error = 'Erro, cheque se a lista selecionada contém assinantes.';
+				$error = 'Erro, verifique se a lista selecionada contém assinantes.';
 			}
 		} else {
 			$result = false;
@@ -102,7 +102,6 @@ class Maladireta_EnviarController extends Zend_Controller_Action
 		}
 
 		if ($result === false) {
-            //$this->_redirect('/maladireta/enviar/escolher/error/');
 			$this->_forward('escolher','enviar','maladireta', array(
 				'error' => $error,
 				'mensagem' => $mensagem->id,
