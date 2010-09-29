@@ -22,7 +22,7 @@ class Maladireta_IndexController extends Zend_Controller_Action
 	public function indexAction()
 	{
 
-		$frmContact = new Contact_Form_Contact();
+		$frmContact = new Contato_Form_Contato();
 		if ($this->_request->isPost() && $frmContact->isValid($_POST)) {
 			$sender = $frmContact->getValue('name');
 			$email = $frmContact->getValue('email');
