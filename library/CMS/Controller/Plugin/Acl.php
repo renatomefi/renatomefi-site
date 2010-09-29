@@ -26,6 +26,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->add(new Zend_Acl_Resource('lista'));
         $acl->add(new Zend_Acl_Resource('assinante'));
         $acl->add(new Zend_Acl_Resource('enviar'));
+        $acl->add(new Zend_Acl_Resource('livrodevisitas'));
         
         // set up the access rules
         $acl->allow(null, array('index', 'error'));
@@ -36,6 +37,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $acl->allow('guest', 'search', array('index', 'search'));
         $acl->allow('guest', 'feed');
         $acl->allow('guest', 'bug', array('submit', 'list'));
+        $acl->allow('guest', 'livrodevisitas', array('assinar', 'ver'));
         
         // cms users can also work with content
         $acl->allow('user', 'page', array('list', 'create', 'edit', 'delete'));
